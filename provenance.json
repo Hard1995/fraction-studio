@@ -1,0 +1,11 @@
+{
+  "upstream": "https://github.com/Anindya-Karmaker/Advanced_chromatogram_analyzer",
+  "accessed": "2026-09-06",
+  "upstream_sha256": "c52293e7c0efd608d3ac99dc06ad797c7206b809f3900e31e6f08fbdfcfaf573",
+  "dependencies": {
+    "plotly.min.js": "00404ad9f5d099a5c1ebbf478063f4aa95043debb30e28038575728e1ef83167",
+    "papaparse.min.js": "b8e870c5d2b29772f10c9fa9a693c8b896aac8540ed6701e3cc6304c683febdb",
+    "xlsx.full.min.js": "c9506197caf809a075b6dee1da0d36fb19da7158ffe8a88e7b0c96c5d8623c99"
+  },
+  "icon": "OpenAI built-in image generation; exec-65a4c7d8-dab0-460c-863b-18f1ba4fada2.png"
+}

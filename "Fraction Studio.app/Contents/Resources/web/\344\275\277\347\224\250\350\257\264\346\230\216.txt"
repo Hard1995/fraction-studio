@@ -1,0 +1,42 @@
+Fraction Studio v6 · 柱体积换算更新版 · 2026-09-06
+
+打开 Fraction Studio.app（Apple Silicon / macOS 12+）。也可以直接用浏览器打开 index.html；vendor 目录必须一起保留。所有绘图库均已本地化，无需联网加载。
+
+基于 Anindya Karmaker 的 Advanced Chromatogram Analyzer 修改，保留 LICENSE 和上游源码。上游地址、访问日期和 SHA256 见 provenance.json。
+
+主要变化：
+1. Fraction 位于独立底部轨道，与主曲线共用 X 坐标；缩放同步，密集标签稀疏显示，完整区间可以展开查看。
+2. Fraction 的终点取下一条边界；最后一管没有显式 end 时不推测终点。
+3. 绿色积分边界支持鼠标拖动，拖动时数值更新，松开后重绘填色。
+4. Zero、Constant、Linear、Signal 四种积分基线。Signal 表示实际基线曲线，并非任意“已经扣基线的信号”；须核对导出列含义后再选。
+5. 积分使用梯形法，起止端点线性插值。Gross、Baseline、Net 分开报告，不截断负净面积。
+6. 峰表保存多个区间并导出 CSV；Area % 仅在同通道/单位/基线设置、非负且区间不重叠时显示。
+7. UNICORN 配对列导入保留 X 单位，缺失 Y 不再造成 X/Y 数组错位。
+8. 导出 SVG 和原有 PNG；AI 生成图标。
+
+使用：
+- 先点击“载入合成示例”熟悉界面。示例不是实验结果。
+- Import 导入 TXT/CSV，或 Custom Import 导入 Excel。
+- Analysis → Integration Range 可选择“坐标输入”或“Fraction · 按管选择”。
+- 按管模式的 Start / End 下拉框显示“第 N 管 · 原始标签”，管序按位置排序，图中隐藏的标记仍计入。选择第 5–8 管时，从第 5 管起点积分到第 8 管终点（通常为第 9 管起点），包含第 8 管全部区间。
+- 坐标范围自动更新；按管模式锁定数值输入和拖动边界。切回坐标模式可自由微调。
+- 最后一管终点未知、管序颠倒或边界重复时不计算；请补充真实边界。选择方式和管号会随会话保存。
+- 图下方选择基线；Constant 数值使用 Analysis 中的 Manual Baseline。
+- 保存当前峰后可导出峰表；Save/Load 保存或恢复分析会话。
+
+边界：
+- 图下方填写“柱体积 · 1 CV = 多少 mL”，然后切换显示单位。例如 1 CV = 24 mL，则 12 mL = 0.5 CV。
+- 曲线、Fraction、积分范围、区域和已保存峰表随单位一起换算；原始数据不修改。柱体积与显示状态随会话保存。
+- 表头没有单位时，必须先指定原始横轴单位；时间与体积换算仍未实现。
+- 混合横轴单位的数据应先统一单位再导入。输入 X 必须严格递增。
+- CV 或未知信号单位不会启用蛋白质量计算。
+- HETP / 不对称度没有在新版中重新验证，因此分析面板不输出这两项。
+- 本次用合成数据和最小 UNICORN 表头验证，尚未使用用户真实实验文件。
+- App 为本机 ad-hoc 签名，未 Apple 公证，未安装到 /Applications。
+
+验证：
+node --test tests/core.test.cjs
+node tests/ui.cjs
+后者使用现有 Playwright 包和 Google Chrome，路径在脚本首部；不自动安装依赖。
+11 项核心数值测试通过；离线渲染、缩放、真实鼠标拖动、稀疏标签、CSV/SVG、缺失 Y、CV 单位、柱体积修改、mL/CV 往返换算、会话恢复、选第 5–8 管含末管、按管模式恢复及末管终点缺失检查通过；无 JS 异常，无远程请求。
+macOS App 已编译、签名验证并实际启动；原生 SVG 保存对话框已确认出现。完整写盘验证在 Chrome 中完成。
