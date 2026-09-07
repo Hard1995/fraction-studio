@@ -30,5 +30,5 @@ s=s.replace("Plotly.newPlot('plotlyChart', traces, layout, config);","renderV6(t
 s=s.replace("version: '4.25',","version: '6.0-local',\n                studio: studioState(),")
 s=s.replace('                    columnParams = sessionData.columnParams', '                    restoreStudio(sessionData.studio);\n                    columnParams = sessionData.columnParams')
 s=s.replace("        function resetState() {", "        function resetState() {\n            if (typeof resetStudio === 'function') resetStudio();")
-s=s.replace('</body>','<script src="studio.js"></script></body>')
+s=s.replace('</body>','<script src="studio.js"></script><script src="design.js"></script></body>')
 (p/'index.html').write_text(s)

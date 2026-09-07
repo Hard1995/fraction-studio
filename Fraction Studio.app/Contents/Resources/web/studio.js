@@ -57,21 +57,21 @@ updateIntegration=function(){
  el('integAreaVal').textContent=r.net.toFixed(4)+' '+yu+'·'+xu;
  el('integVolumeVal').textContent=r.volume.toFixed(4)+' '+xu;
  el('integRangeVal').textContent=r.start.toFixed(4)+' – '+r.end.toFixed(4)+' '+xu;
- el('studioResult').textContent=`Gross ${r.gross.toFixed(4)} · Baseline ${r.baseline.toFixed(4)} · Net ${r.net.toFixed(4)} ${yu}·${xu} | Apex ${r.apex.toFixed(4)} ${xu}`;
+ el('studioResult').innerHTML=`<div class="metric metric-primary"><span>NET AREA · 净峰面积</span><strong>${r.net.toFixed(4)} ${esc(yu)}·${esc(xu)}</strong></div><div class="metric"><span>GROSS · 总面积</span><strong>${r.gross.toFixed(4)}</strong></div><div class="metric"><span>BASELINE · 基线面积</span><strong>${r.baseline.toFixed(4)}</strong></div><div class="metric"><span>APEX · 峰顶</span><strong>${r.apex.toFixed(4)} ${esc(xu)}</strong></div>`;
  el('concWarning').style.display='block';el('concWarning').textContent='浓度计算仅在横轴 mL、信号 mAU 时启用；HETP/不对称度需独立核验。';
  if(xu==='mL'&&yu.toLowerCase()==='mau'&&r.net>0){el('calcBtn').disabled=false;el('concWarning').style.display='none';updateConcentrationDisplay();}
 };
 function renderV6(traces,layout,config){
  const range=layout.xaxis.range||[fullDataRange.min,fullDataRange.max], show=el('showFractionsCheck').checked;
  const track=show?ChromCore.track(fractionData,range,Math.max(200,el('plotlyChart').clientWidth-220)):[];
- layout.width=undefined;layout.autosize=true;layout.height=Math.max(460,Math.min(620,window.innerHeight-260));
+ layout.width=undefined;layout.autosize=true;layout.height=Math.max(420,Math.min(500,window.innerHeight-300));
  layout.margin={t:75,b:155,l:85,r:55};layout.paper_bgcolor='#ffffff';layout.plot_bgcolor='#ffffff';
  layout.font={family:'-apple-system, BlinkMacSystemFont, Arial, sans-serif',size:12,color:'#334155'};
  layout.legend={orientation:'h',x:0,y:1.16,xanchor:'left',yanchor:'top'};
  layout.annotations=layout.annotations.filter(a=>a.name!=='xAxisTitle'&&a.name!=='chartTitle');
  layout.xaxis.title={text:''};layout.annotations.push({xref:'paper',yref:'paper',x:.46,y:-.27,text:esc(xUnit()),showarrow:false,font:{size:12}});layout.xaxis.tickfont={size:12};layout.xaxis.mirror=false;
  layout.xaxis.showgrid=true;layout.xaxis.gridcolor='#eef2f5';layout.xaxis.zeroline=false;
- selectedVariables.forEach((v,i)=>{const a=layout[i?'yaxis'+(i+1):'yaxis'];const d=rawData[v];let lo=Infinity,hi=-Infinity;for(let j=0;j<d.x.length;j++)if(d.x[j]>=range[0]&&d.x[j]<=range[1]){lo=Math.min(lo,d.y[j]);hi=Math.max(hi,d.y[j]);}if(Number.isFinite(lo)){const pad=(hi-lo||Math.abs(hi)||1)*.06;a.range=[Math.min(0,lo-pad),hi+pad];}a.tickfont.size=11;a.mirror=false;if(i)a.anchor='free';});
+ selectedVariables.forEach((v,i)=>{const a=layout[i?'yaxis'+(i+1):'yaxis'];const d=rawData[v];let lo=Infinity,hi=-Infinity;for(let j=0;j<d.x.length;j++)if(d.x[j]>=range[0]&&d.x[j]<=range[1]){lo=Math.min(lo,d.y[j]);hi=Math.max(hi,d.y[j]);}if(Number.isFinite(lo)){const pad=(hi-lo||Math.abs(hi)||1)*.06;a.range=[Math.min(0,lo-pad),hi+pad];}a.tickfont.size=11;if(v.includes('Conductivity')){a.tickfont.color='#748c97';layout.annotations.filter(n=>n.name==='yAxisTitle_'+v).forEach(n=>n.font.color='#748c97');a.linecolor='#bac9ce';}a.mirror=false;if(i)a.anchor='free';});
  // Only integration boundary lines are editable; fraction boundaries remain data coordinates.
  let boundary=0;layout.shapes.forEach(s=>{s.editable=false;if(s.type==='line'&&s.line?.color==='red'){s.name=boundary++?'studioEnd':'studioStart';s.editable=false;s.line.color='#0d9488';s.line.width=2;}});
  let lastLabel=-Infinity;

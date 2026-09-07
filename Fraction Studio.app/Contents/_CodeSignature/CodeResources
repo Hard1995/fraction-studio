@@ -16,21 +16,25 @@
 		<data>
 		Ijjwz4P86Hl2F+iPVJzK/ejjsEQ=
 		</data>
+		<key>Resources/web/design.js</key>
+		<data>
+		YQc9r9C/ppYaWG8ZkcEdxdXtheg=
+		</data>
 		<key>Resources/web/icon.png</key>
 		<data>
 		DNMCw1Q6HkTM09nzHI6Jk/s9H7c=
 		</data>
 		<key>Resources/web/index.html</key>
 		<data>
-		WeEgtUccfccmTMX9zSSbVwzRTPE=
+		hXJRyBGf+8WF3vMalROi1lWqOcs=
 		</data>
 		<key>Resources/web/studio.css</key>
 		<data>
-		OsyGOhGVPmVemG05jL+8GVi0Lqg=
+		PgngT13u19Do7NVZ+LolVVWKcW8=
 		</data>
 		<key>Resources/web/studio.js</key>
 		<data>
-		PBAqMlp+mYHsG1MGuoOn37f7R9o=
+		IieTmVvnCKPCE2MNk0WQWQ7VuLA=
 		</data>
 		<key>Resources/web/vendor/papaparse.min.js</key>
 		<data>
@@ -72,6 +76,13 @@
 			cMzln5vLfAFuvXU8tlUJfXJWqpxWaRdqrH/8HdjklM8=
 			</data>
 		</dict>
+		<key>Resources/web/design.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0o0QR6GvZ5OhmkWETSUvl+ZjZx+xvKke3jQ9ViK92wo=
+			</data>
+		</dict>
 		<key>Resources/web/icon.png</key>
 		<dict>
 			<key>hash2</key>
@@ -83,21 +94,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PTOIIxloeahPbvr6nu5OYC1fYhFSkoVv0itcbfdEJtg=
+			eB6CMdaSaN5Z9yhLU+pL4XWu0V+MokixF3uqUcdcgJw=
 			</data>
 		</dict>
 		<key>Resources/web/studio.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			z86EdEzRsVMdAj3TeXzdi8rAe4Ff22s0ULHIN5kB8xE=
+			mvzeEvO67S4caNBYMKaVX6QwGVffe+UFI2vCBaDZTZQ=
 			</data>
 		</dict>
 		<key>Resources/web/studio.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HNefrgNe5ELtg9mCXzwjZVkegVv7h2UnMImfbHNlCB0=
+			DMOTWW1eyo4yjQIB8OF+BC4XcmTvrGxCi0NEOpmcxbs=
 			</data>
 		</dict>
 		<key>Resources/web/vendor/papaparse.min.js</key>
